@@ -13,10 +13,10 @@ services:
     container_name: auths-db
     restart: unless-stopped
     environment:
-        MYSQL_ROOT_PASSWORD: admin123
-        MYSQL_DATABASE: auths
-        MYSQL_USER: dnotrever
-        MYSQL_PASSWORD: admin123
+        MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+        MYSQL_DATABASE: ${DB_DATABASE}
+        MYSQL_USER: ${DB_USERNAME}
+        MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
         - ./docker-compose/mysql:/docker-entrypoint-initdb.d
     networks:
