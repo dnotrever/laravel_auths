@@ -1,0 +1,27 @@
+services:
+  app:
+    build: ./
+    image: auths
+    container_name: auths-app
+    restart: unless-stopped
+    volumes:
+      - .:/var/www/
+    networks:
+      - auths
+  mysql:
+    image: mysql
+    container_name: auths-db
+    restart: unless-stopped
+    environment:
+        MYSQL_ROOT_PASSWORD: admin123
+        MYSQL_DATABASE: auths
+        MYSQL_USER: dnotrever
+        MYSQL_PASSWORD: admin123
+    volumes:
+        - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+    networks:
+      - auths
+networks:
+  auths:
+    name: auths
+    driver: bridge
