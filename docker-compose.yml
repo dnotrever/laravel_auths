@@ -1,16 +1,16 @@
 services:
   app:
     build: ./
-    image: auths
-    container_name: auths-app
+    image: laravel-auths
+    container_name: lar-auths-app
     restart: unless-stopped
     volumes:
       - .:/var/www/
     networks:
-      - auths
+      - laravel-auths
   mysql:
     image: mysql
-    container_name: auths-db
+    container_name: lar-auths-db
     restart: unless-stopped
     environment:
         MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
@@ -20,8 +20,8 @@ services:
     volumes:
         - ./docker-compose/mysql:/docker-entrypoint-initdb.d
     networks:
-      - auths
+      - laravel-auths
 networks:
-  auths:
-    name: auths
+  laravel-auths:
+    name: laravel-auths
     driver: bridge
